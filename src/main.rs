@@ -14,11 +14,7 @@ struct Cli {
 
 fn main() {
     let args = Cli::parse();
-    let result = std::fs::read_to_string(&args.path);
-    let content = match result {
-        Ok(content) => { content }
-        Err(error) => { panic!("Oh noes: {}", error); }
-    };
+    let content = std::fs::read_to_string(&args.path).unwrap();
 
     for line in content.lines() {
         if line.contains(&args.pattern) {
