@@ -20,11 +20,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let content = std::fs::read_to_string(path)
         .with_context(|| format!("could not read file `{}`", path.display()))?;
 
-    for line in content.lines() {
-        if line.contains(&args.pattern) {
-            println!("{}", line);
-        }
-    }
+    hello_rust::find_matches(&content, &args.pattern, &mut std::io::stdout());
     Ok(())
 
+}
+
+
+fn answer() -> i8 {
+    return 42
+}
+
+#[test]
+fn check_answer_validity() {
+    assert_eq!(answer(), 42);
 }
